@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://j2txx7qrnb6j"]
+
+[ext_resource type="Script" path="res://addons/Mirror/Mirror/Mirror.gd" id="1_60q3w"]
+[ext_resource type="Script" path="res://Demo/VRController.gd" id="2_ytg0k"]
+[ext_resource type="Material" uid="uid://bs2sxpkfx3nb2" path="res://Demo/BlueGridMat.tres" id="3_72284"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_owq5e"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jrgp0"]
+
+[sub_resource type="Sky" id="Sky_61mh0"]
+sky_material = SubResource("ProceduralSkyMaterial_jrgp0")
+
+[sub_resource type="Environment" id="Environment_5mruy"]
+background_mode = 2
+sky = SubResource("Sky_61mh0")
+
+[sub_resource type="BoxMesh" id="BoxMesh_siw7l"]
+
+[node name="VRTest Scene" type="Node3D"]
+
+[node name="Mirror" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.99454)
+script = ExtResource("1_60q3w")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+script = ExtResource("2_ytg0k")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/XRCamera3D"]
+mesh = SubResource("BoxMesh_owq5e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.926765, -0.332664, 0.174475, 0, 0.464471, 0.885588, -0.375642, -0.820732, 0.430456, 0, 3.19956, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5mruy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.27881, 0, 0, 0, 0.4, 0, 0, 0, 7.04709, 0, -0.287274, 0)
+material_override = ExtResource("3_72284")
+mesh = SubResource("BoxMesh_siw7l")

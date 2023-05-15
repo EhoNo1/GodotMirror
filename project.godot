@@ -12,7 +12,7 @@ config_version=5
 
 config/name="GodotMirror"
 config/description="A mirror resource and demo scene for a versatile mirror."
-run/main_scene="res://Demo/DemoWorld.tscn"
+run/main_scene="res://Demo/VRDemoWorld.tscn"
 config/features=PackedStringArray("4.0")
 
 [autoload]
@@ -60,5 +60,9 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 environment/default_environment="res://Demo/default_env.tres"
+
+[xr]
+
+openxr/enabled=true
+shaders/enabled=true

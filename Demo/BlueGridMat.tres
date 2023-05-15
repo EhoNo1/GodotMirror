@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bs2sxpkfx3nb2"]
+
+[ext_resource type="Texture2D" uid="uid://4kou2vdxrq7n" path="res://Demo/BlueGrid.png" id="1_wjmbd"]
+
+[resource]
+albedo_texture = ExtResource("1_wjmbd")
+uv1_scale = Vector3(10, 10, 10)
+uv1_triplanar = true
+texture_filter = 0
