@@ -20,13 +20,16 @@ const whitegreen : Color = Color(0.9, 0.97, 0.94)
 
 
 func _enter_tree():
-	var node = preload("MirrorContainer.tscn").instantiate()
+	var scene = preload("MirrorContainer.tscn")
+	var node = scene.instantiate()
 	add_child(node)
+
+func _ready():
+	# set viewport to specified resolution
+	viewport.size = get_mirror_size_ratio() * MirrorManager.resolution
 
 
 func _process(delta):
-	#_ready() # need to reload for proper operation when used as a toolscript
-	
 	if Engine.is_editor_hint(): # stops from running in the editor to avoid failed calculations
 		return
 	elif MirrorManager.main_camera == null:
@@ -37,9 +40,6 @@ func _process(delta):
 	cam.cull_mask = 0xFF
 	for i in cullMask:
 		cam.cull_mask &= ~(1<<i)
-
-	# set viewport to specified resolution
-	viewport.size = get_mirror_size_ratio() * MirrorManager.resolution
 	
 	# Set tint color
 	mirror.get_active_material(0).set_shader_parameter("tint", MirrorColor)
@@ -81,7 +81,6 @@ func Mirror_transform(n : Vector3, d : Vector3) -> Transform3D:
 	offset = 2 * n.dot(d)*n
 	
 	return Transform3D(Basis(basisX, basisY, basisZ), offset)	
-	pass
 
 
 ## Calculates a normalized ratio of the height and width of the mirror
